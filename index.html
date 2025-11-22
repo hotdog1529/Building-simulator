@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Build & Destroy Simulator — Weapons</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Matter.js -->
+  <script src="https://cdn.jsdelivr.net/npm/matter-js@0.19.0/build/matter.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <aside id="toolbar" aria-label="Tools">
+      <div class="brand">Build & Destroy</div>
+
+      <div class="group">
+        <label class="section-title">Tools</label>
+        <button class="tool active" data-tool="spawn" title="Spawn shape">➕ Spawn</button>
+        <button class="tool" data-tool="erase" title="Erase / Destroy">🗑️ Erase</button>
+        <button class="tool" data-tool="grab" title="Grab / Move">✋ Grab</button>
+      </div>
+
+      <div class="group">
+        <label class="section-title">Shape</label>
+        <button class="shape active" data-shape="rectangle">▭ Rectangle</button>
+        <button class="shape" data-shape="circle">◯ Circle</button>
+      </div>
+
+      <div class="group">
+        <label class="section-title">Weapons (drag to stage)</label>
+        <div class="weapons">
+          <div class="weapon" data-weapon="bomb" tabindex="0" role="button" aria-label="Bomb">💣 Bomb</div>
+          <div class="weapon" data-weapon="tnt" tabindex="0" role="button" aria-label="TNT crate">🧨 TNT</div>
+          <div class="weapon" data-weapon="grenade" tabindex="0" role="button" aria-label="Grenade">🟢 Grenade</div>
+        </div>
+        <small class="muted">Drag & drop onto the stage. Tap placed weapon to detonate.</small>
+      </div>
+
+      <div class="group">
+        <label class="section-title">Options</label>
+        <label class="control">
+          <input id="gravityToggle" type="checkbox" checked />
+          Gravity
+        </label>
+        <label class="control">
+          <input id="snapToggle" type="checkbox" />
+          Snap to grid
+        </label>
+        <label class="control">Size
+          <input id="sizeRange" type="range" min="10" max="140" value="50" />
+        </label>
+      </div>
+
+      <div class="group">
+        <label class="section-title">Actions</label>
+        <button id="clearBtn">Clear</button>
+        <button id="downloadBtn">Download PNG</button>
+      </div>
+
+      <div class="credits">Works on iPad, iPhone & Desktop</div>
+    </aside>
+
+    <main id="stage-wrapper">
+      <canvas id="stage" aria-label="Physics stage"></canvas>
+      <div id="hint">Tap or click to spawn. Drag a weapon from the toolbar to the stage, then tap it to explode.</div>
+    </main>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
