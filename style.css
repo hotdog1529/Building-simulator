@@ -1,0 +1,79 @@
+:root{
+  --toolbar-width: 220px;
+  --bg: #0f1724;
+  --panel: #0b1220;
+  --accent: #21a0fd;
+  --muted: #9aa7b8;
+  --glass: rgba(255,255,255,0.03);
+  --radius: 10px;
+}
+
+*{box-sizing:border-box}
+html,body,#app{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;color:#e6eef6;background:linear-gradient(180deg,var(--bg) 0%, #071023 100%);}
+
+#app{display:flex;min-height:100vh;align-items:stretch}
+
+/* Toolbar */
+#toolbar{
+  width:var(--toolbar-width);
+  background:linear-gradient(180deg,var(--panel), rgba(11,18,32,0.9));
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  border-right:1px solid rgba(255,255,255,0.03);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.brand{
+  font-weight:700;
+  color:var(--accent);
+  font-size:16px;
+  margin-bottom:6px;
+  text-align:center;
+}
+
+.group{display:flex;flex-direction:column;gap:8px;background:var(--glass);padding:10px;border-radius:8px}
+.section-title{font-size:12px;color:var(--muted);margin-bottom:6px;display:block}
+
+button, .control{appearance:none;border:0;background:transparent;color:inherit;padding:8px;border-radius:8px;cursor:pointer;text-align:left}
+button:hover{background:rgba(255,255,255,0.02)}
+button.active, .shape.active{background:linear-gradient(90deg, rgba(33,160,253,0.12), rgba(33,160,253,0.06));box-shadow:inset 0 0 0 1px rgba(33,160,253,0.06)}
+.control{display:flex;align-items:center;gap:8px}
+input[type=range]{width:100%}
+
+/* Weapons */
+.weapons{display:flex;flex-direction:column;gap:8px}
+.weapon{padding:8px 10px;border-radius:8px;background:rgba(0,0,0,0.15);cursor:grab;user-select:none;touch-action:none}
+.weapon:active{cursor:grabbing}
+.weapon[draggable="true"]{opacity:0.95}
+.weapon:focus{outline:2px solid rgba(33,160,253,0.25)}
+
+/* Stage */
+#stage-wrapper{flex:1;position:relative;display:flex;align-items:stretch;justify-content:center}
+#stage{width:100%;height:100%;display:block;background:
+  linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.04));
+  touch-action: none;
+}
+
+/* Hint */
+#hint{
+  position:absolute;left:50%;bottom:16px;transform:translateX(-50%);
+  background:rgba(0,0,0,0.45);color:#e6eef6;padding:8px 12px;border-radius:999px;font-size:13px;
+  backdrop-filter: blur(4px);
+}
+
+.muted{color:var(--muted);font-size:12px}
+
+/* Responsive adjustments (small screens -> toolbar becomes top bar) */
+@media (max-width:720px){
+  #app{flex-direction:column}
+  #toolbar{width:100%;height:auto;display:flex;flex-wrap:wrap;gap:8px;flex-direction:row;padding:8px;align-items:center;justify-content:space-between}
+  .group{flex-direction:row;align-items:center;gap:6px;padding:6px}
+  #stage-wrapper{height:calc(100vh - 120px)}
+  #hint{bottom:80px}
+}
+
+/* Make buttons touch-friendly */
+button, .tool, .shape{font-size:14px;padding:10px 12px}
